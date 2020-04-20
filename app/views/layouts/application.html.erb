@@ -63,6 +63,19 @@
     <%- if !current_user && (data = cookies.delete(:authentication_data, path: Discourse.base_uri("/"))) %>
       <meta id="data-authentication" data-authentication-data="<%= data %>">
     <%- end %>
+
+    <%- if current_user && current_user.primary_group %>
+      <style>
+        #site-logo {
+          opacity: 0;
+        }
+
+        #main .d-header .title {
+          background: url(https://atomicgurus.com/uploads/vendor/<%= current_user.primary_group.name %>) center left / auto 50px no-repeat;
+          width: calc(100% - 10rem);
+        }
+      </style>
+    <%- end %>
   </head>
 
   <body class="<%= body_classes %>">

@@ -24,7 +24,7 @@ class GroupUser < ActiveRecord::Base
   end
 
   def set_primary_group
-    user.update!(primary_group: group) if group.primary_group
+    user.update!(primary_group: group) if group.primary_group && user.primary_group_id == nil
   end
 
   def remove_primary_group
